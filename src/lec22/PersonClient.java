@@ -5,7 +5,7 @@ public class PersonClient {
 	public static void main(String[] args) {
 		System.out.println("hey");
 		Person p = new Person("Ankita", 22);
-		p.setAge(20);
+		p.setAge(-20);
 		System.out.println(p.getAge());
 		System.out.println("Bye");
 //		p.name = "Ankit";
