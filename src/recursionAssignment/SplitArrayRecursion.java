@@ -11,37 +11,31 @@ public class SplitArrayRecursion {
 		for (int i = 0; i < n; i++) {
 			arr[i] = sc.nextInt();
 		}
-		recursionArray(arr, 0, n - 1);
+		splitArray(arr, 0, "", 0, "", 0);
+		System.out.println(countSplits(arr, 0, "", 0, "", 0));
 		sc.close();
 	}
 
-	public static void recursionArray(int[] arr, int si, int ei) {
-
+	public static void splitArray(int[] arr, int i, String ans, int sum, String ans1, int sum1) {
+		if (i == arr.length) {
+			if (sum == sum1) {
+				System.out.println(ans + "and " + ans1);
+			}
+			return;
+		}
+		splitArray(arr, i + 1, ans + arr[i] + " ", sum + arr[i], ans1 + "", sum1);
+		splitArray(arr, i + 1, ans + "", sum, ans1 + arr[i] + " ", sum1 + arr[i]);
 	}
 
-	public static void display(int[] arr, int i) {
-		for (int idx = 0; idx < arr.length; idx++) {
-			if (idx == i)
-				System.out.print(arr[idx] + " and ");
-			else
-				System.out.print(arr[idx] + " ");
+	public static int countSplits(int[] arr, int i, String ans, int sum, String ans1, int sum1) {
+		if (i == arr.length) {
+			if (sum == sum1) {
+				return 1;
+			}
+			return 0;
 		}
+		int c1 = countSplits(arr, i + 1, ans + arr[i] + " ", sum + arr[i], ans1 + "", sum1);
+		int c2 = countSplits(arr, i + 1, ans + "", sum, ans1 + arr[i] + " ", sum1 + arr[i]);
+		return c1 + c2;
 	}
-
-	public static int divide(int[] arr, int begIdx, int endIdx, int idx) {
-		int sumLeft = 0;
-		for (int i = begIdx; i <= idx; i++) {
-			sumLeft += arr[i];
-		}
-
-		int sumRight = 0;
-		for (int i = idx + 1; i <= endIdx; i++) {
-			sumRight += arr[i];
-		}
-
-		if (sumLeft == sumRight)
-			return idx;
-		return -1;
-	}
-
 }
