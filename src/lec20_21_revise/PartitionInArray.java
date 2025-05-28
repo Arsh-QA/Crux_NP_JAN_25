@@ -1,22 +1,14 @@
-package lec21_21_revise;
+package lec20_21_revise;
 
-public class QuickSort {
-
+public class PartitionInArray {
 	public static void main(String[] args) {
 		int[] arr = { 5, 7, 2, 1, 8, 3, 4 };
-		sort(arr, 0, arr.length - 1);
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
+		int idx = partition(arr, 0, arr.length - 1);
+		for (int i : arr) {
+			System.out.print(i + " ");
 		}
-	}
-
-	public static void sort(int[] arr, int si, int ei) {
-		if (si >= ei) {
-			return;
-		}
-		int idx = partition(arr, si, ei);
-		sort(arr, si, idx - 1);
-		sort(arr, idx + 1, ei);
+		System.out.println();
+		System.out.println(idx);
 	}
 
 	public static int partition(int[] arr, int si, int ei) {

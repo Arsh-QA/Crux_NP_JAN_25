@@ -1,14 +1,25 @@
-package lec21_21_revise;
+package lec20_21_revise;
 
-public class MergeTwoSortedArrays {
+public class MergeSort {
 
 	public static void main(String[] args) {
-		int[] arr1 = { 2, 3, 4, 5, 7, 8, 11 };
-		int[] arr2 = { 1, 2, 5, 6, 9, };
-		int[] ans = merge(arr1, arr2);
-		for (int i : ans) {
-			System.out.print(i + " ");
+		int[] arr = { 7, 5, 1, 4, 3 };
+		int[] ans = sort(arr, 0, arr.length - 1);
+		for (int i = 0; i < ans.length; i++) {
+			System.out.print(ans[i] + " ");
 		}
+	}
+
+	public static int[] sort(int[] arr, int si, int ei) {
+		if (si == ei) {
+			int[] bs = new int[1];
+			bs[0] = arr[si];
+			return bs;
+		}
+		int mid = (si + si) / 2;
+		int[] fa = sort(arr, si, mid);
+		int[] sa = sort(arr, mid + 1, ei);
+		return merge(fa, sa);
 	}
 
 	public static int[] merge(int[] arr1, int[] arr2) {
@@ -42,5 +53,4 @@ public class MergeTwoSortedArrays {
 		}
 		return ans;
 	}
-
 }
