@@ -31,7 +31,5 @@ public class StackJava {
 		for (int v : st) {
 			System.out.print(v + " ");
 		}
-
 	}
-
 }

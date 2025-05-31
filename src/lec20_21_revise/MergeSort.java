@@ -16,7 +16,7 @@ public class MergeSort {
 			bs[0] = arr[si];
 			return bs;
 		}
-		int mid = (si + si) / 2;
+		int mid = (si + ei) / 2;
 		int[] fa = sort(arr, si, mid);
 		int[] sa = sort(arr, mid + 1, ei);
 		return merge(fa, sa);

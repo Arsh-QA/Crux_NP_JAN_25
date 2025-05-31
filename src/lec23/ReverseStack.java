@@ -16,7 +16,7 @@ public class ReverseStack {
 		System.out.println(st);
 	}
 
-	// O(n^2
+	// O(n^2)
 	private static void reverse(Stack<Integer> st) {
 		if (st.isEmpty()) {
 			return;
