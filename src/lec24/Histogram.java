@@ -6,7 +6,8 @@ public class Histogram {
 
 	public static void main(String[] args) {
 		int[] arr = { 2, 1, 5, 6, 2, 3 };
-		System.out.println(maximumArea(arr));
+		int[] arr1 = {1, 2, 3, 4, 5};
+		System.out.println(maximumArea(arr1));
 	}
 
 	public static int maximumArea(int[] arr) {
