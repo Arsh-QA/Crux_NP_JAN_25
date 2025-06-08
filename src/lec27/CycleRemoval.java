@@ -1,7 +1,5 @@
 package lec27;
 
-import lec26.LinkedListCycle.ListNode;
-
 public class CycleRemoval {
 	private class Node {
 		int val;
