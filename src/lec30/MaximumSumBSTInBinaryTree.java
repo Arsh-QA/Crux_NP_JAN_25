@@ -1,7 +1,7 @@
 package lec30;
 
-import lec30.ValidateBinarySearchTree.TreeNode;
-import lec30.ValidateBinarySearchTree.Solution.BSTPair;
+
+
 
 public class MaximumSumBSTInBinaryTree {
 	public class TreeNode {

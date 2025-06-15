@@ -12,8 +12,8 @@ public class LLOddEven {
 			ll.addLast(sc.nextInt());
 			n--;
 		}
-//		ll.oddEven();
-//		ll.display();
+		ll.oddEven();
+		ll.display();
 		sc.close();
 	}
 }

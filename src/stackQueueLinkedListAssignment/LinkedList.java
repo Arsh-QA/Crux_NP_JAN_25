@@ -176,25 +176,48 @@ public class LinkedList {
 		return temp;
 	}
 
+	// For returning List with odd values Nodes first and then even values Nodes
 	public Node oddEven() {
+		Node oddHead = null, oddTail = null;
+		Node evenHead = null, evenTail = null;
 		Node curr = head;
-		Node prev = head;
-		Node ahead = prev;
-		while (curr.val % 2 == 0) {
+		while (curr != null) {
+			if (curr.val % 2 != 0) {
+				// Odd Node
+				if (oddHead == null) {
+					oddHead = curr;
+					oddTail = curr;
+				} else {
+					oddTail.next = curr;
+					oddTail = curr;
+				}
+			} else {
+				// Even Node
+				if (evenHead == null) {
+					evenHead = curr;
+					evenTail = curr;
+				} else {
+					evenTail.next = curr;
+					evenTail = curr;
+				}
+			}
 			curr = curr.next;
 		}
-		while (prev.val % 2 != 0) {
-			prev = prev.next;
-		}
-		while (curr != null) {
-			if (curr.next.val % 2 == 0) {
-				prev.next = curr.next;
-			}
-		}
-		return ahead;
 
+		// Combine the Two Lists
+		if (oddTail != null) {
+			oddTail.next = evenHead;
+		}
+		if (evenTail != null) {
+			evenTail.next = null; // important to avoid cycle
+		}
+
+		// Update the head of the main list
+		head = (oddHead != null) ? oddHead : evenHead;
+		return head;
 	}
 
+	// For returning List with odd places Nodes first and then even places Nodes
 	public Node oddEven2() throws Exception {
 		Node curr = head;
 		if (curr == null)
@@ -212,4 +235,11 @@ public class LinkedList {
 		curr.next = ahead;
 		return head;
 	}
+	
+	
+	
+	
+	
+	
+	
 }
