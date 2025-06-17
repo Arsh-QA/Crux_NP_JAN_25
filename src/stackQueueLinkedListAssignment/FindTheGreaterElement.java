@@ -12,20 +12,24 @@ public class FindTheGreaterElement {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = sc.nextInt();
 		}
+		int[] arr1 = new int[2 * n];
+		for (int i = 0; i < arr.length; i++) {
+			arr1[i] = arr[i];
+		}
+		for (int i = 0; i < arr.length; i++) {
+			arr1[i + arr.length] = arr[i];
+		}
 		nextGreater(arr);
 		sc.close();
 	}
 
-	public static void nextGreater(int[] arr) {
+	public static void nextGreater(int[] arr1) {
 		Stack<Integer> st = new Stack<>();
-		int[] ans = new int[arr.length];
-		for (int i = 0; i < arr.length; i++) {
-			while (!st.isEmpty() && arr[(i + 1) % arr.length] > arr[st.peek()]) {
-				ans[st.pop()] = arr[i];
+		int[] ans = new int[arr1.length];
+		for (int i = 0; i < arr1.length; i++) {
+			while (!st.isEmpty() && arr1[i] > arr1[st.peek()]) {
+				ans[st.pop()] = arr1[i];
 			}
-//			while (!st.isEmpty() && arr[i] > arr[st.peek()]) {
-//				ans[st.pop()] = arr[i];
-//			}
 			st.push(i);
 		}
 		while (!st.isEmpty()) {

@@ -1,5 +1,7 @@
 package stackQueueLinkedListAssignment;
 
+import java.util.Stack;
+
 public class LinkedList {
 
 	class Node {
@@ -235,11 +237,19 @@ public class LinkedList {
 		curr.next = ahead;
 		return head;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public int kthElementFromLast(int k) {
+		Stack<Integer> st = new Stack<>();
+		Node curr = head;
+		while (curr.next != null) {
+			st.push(curr.val);
+			curr = curr.next;
+		}
+		while (k > 1) {
+			st.pop();
+			k--;
+		}
+		return st.peek();
+	}
+
 }

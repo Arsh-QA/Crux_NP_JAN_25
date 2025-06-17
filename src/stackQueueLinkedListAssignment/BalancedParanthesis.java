@@ -21,13 +21,11 @@ public class BalancedParanthesis {
 			} else {
 				if (st.isEmpty())
 					return false;
-				if (ch == ')' && (st.peek() != '(')) {
+				else if (ch == ')' && (st.peek() != '(')) {
 					return false;
-				}
-				if (ch == '}' && (st.peek() != '{')) {
+				} else if (ch == '}' && (st.peek() != '{')) {
 					return false;
-				}
-				if (ch == '[' && (st.peek() != ']')) {
+				} else if (ch == '[' && (st.peek() != ']')) {
 					return false;
 				}
 				st.pop();

@@ -13,8 +13,37 @@ public class PlayingWithCards {
 		for (int i = 0; i < a.length; i++) {
 			a[i] = sc.nextInt();
 		}
-		playingWithCards(a, q);
+//		playingWithCards(a, q);
+		recursionMethod(a, q, 1);
 		sc.close();
+	}
+
+	public static void recursionMethod(int[] a, int q, int count) {
+		if (a.length == 0)
+			return;
+		for (int i = count; i <= q; i++) {
+			System.out.println("In the iteration");
+			int prime = qthPrimeNumber(i);
+			Stack<Integer> divisible = new Stack<>();
+			Stack<Integer> notDivisible = new Stack<>();
+			for (int j = 0; j < a.length; j++) {
+				if (a[j] % prime == 0) {
+					addLast(divisible, a[j]);
+				} else {
+					addLast(notDivisible, a[j]);
+				}
+			}
+			int[] a1 = new int[divisible.size()];
+			while (!divisible.isEmpty()) {
+				int count1 = 0;
+				a1[count1] = divisible.peek();
+				System.out.println(divisible.pop());
+				count++;
+			}
+			while (!notDivisible.isEmpty()) {
+				System.out.println(notDivisible.pop());
+			}
+		}
 	}
 
 	private static void playingWithCards(int[] a, int q) {
@@ -31,7 +60,7 @@ public class PlayingWithCards {
 				}
 			}
 			int[] a1 = new int[notDivisible.size()];
-			int index = a1.length-1;
+			int index = a1.length - 1;
 			while (!notDivisible.isEmpty()) {
 				a1[index] = notDivisible.pop();
 				index--;
@@ -46,7 +75,7 @@ public class PlayingWithCards {
 		while (!divisible.isEmpty()) {
 			System.out.println(divisible.pop());
 		}
-		for (int i = a.length-1; i >= 0; i--) {
+		for (int i = a.length - 1; i >= 0; i--) {
 			System.out.println(a[i]);
 		}
 	}

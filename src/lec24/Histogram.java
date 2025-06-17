@@ -5,20 +5,20 @@ import java.util.Stack;
 public class Histogram {
 
 	public static void main(String[] args) {
-		int[] arr = { 2, 1, 5, 6, 2, 3 };
-		int[] arr1 = {1, 2, 3, 4, 5};
+		long[] arr = { 2, 1, 5, 6, 2, 3 };
+		long[] arr1 = { 1, 2, 3, 4, 5 };
 		System.out.println(maximumArea(arr1));
 	}
 
-	public static int maximumArea(int[] arr) {
+	public static long maximumArea(long[] arr) {
 		Stack<Integer> st = new Stack<>();
-		int area = 0;
+		long area = 0;
 		for (int i = 0; i < arr.length; i++) {
 			while (!st.isEmpty() && arr[st.peek()] > arr[i]) {
-				int h = arr[st.pop()];
-				int r = i;
+				long h = arr[st.pop()];
+				long r = i;
 				if (!st.isEmpty()) {
-					int l = st.peek();
+					long l = st.peek();
 					area = Math.max(area, h * (r - l - 1));
 				} else {
 					area = Math.max(area, h * r);
@@ -28,9 +28,9 @@ public class Histogram {
 		}
 		int r = arr.length;
 		while (!st.isEmpty()) {
-			int h = arr[st.pop()];
+			long h = arr[st.pop()];
 			if (!st.isEmpty()) {
-				int l = st.peek();
+				long l = st.peek();
 				area = Math.max(area, h * (r - l - 1));
 			} else {
 				area = Math.max(area, h * r);
