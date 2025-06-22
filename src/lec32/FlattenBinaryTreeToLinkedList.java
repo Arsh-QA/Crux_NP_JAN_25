@@ -39,7 +39,6 @@ public class FlattenBinaryTreeToLinkedList {
 				left_tail.right = root.right;
 				root.right = root.left;
 				root.left = null;
-
 			}
 			return right_tail != null ? right_tail : left_tail;
 		}
