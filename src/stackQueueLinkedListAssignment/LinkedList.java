@@ -252,4 +252,20 @@ public class LinkedList {
 		return st.peek();
 	}
 
+	public void reverseKList(int k) {
+		Node curr = head;
+		Node prev = null;
+		while (k > 0) {
+			Node ahead = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = ahead;
+			k--;
+		}
+		head = prev;
+		while (prev.next != null) {
+			prev = prev.next;
+		}
+		prev.next = curr;
+	}
 }
