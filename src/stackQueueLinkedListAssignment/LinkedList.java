@@ -268,4 +268,23 @@ public class LinkedList {
 		}
 		prev.next = curr;
 	}
+
+	public void kAppend(int k) {
+		Stack<Node> st = new Stack<>();
+		Node dummy = head;
+		Node curr = head;
+		while (curr != null) {
+			st.push(curr);
+			curr = curr.next;
+		}
+		Node newHead = st.pop();
+		Node ahead = newHead;
+		while (k > 1) {
+			ahead.next = st.pop();
+			ahead = ahead.next;
+			k--;
+		}
+		ahead.next = dummy;
+		head = newHead;
+	}
 }

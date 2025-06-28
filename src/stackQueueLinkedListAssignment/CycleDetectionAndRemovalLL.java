@@ -99,19 +99,39 @@ public class CycleDetectionAndRemovalLL {
 		Node meet = hasCycle();
 		if (meet == null)
 			return;
-		Node start = head;
-		while (start != null) {
-			Node temp = meet;
-			while (temp.next != meet) {
-				if (temp.next == start) {
-					temp.next = null;
-					return;
-				}
-				temp = temp.next;
-			}
-			start = start.next;
+		// count represents cycle length
+		int count = 1;
+		Node temp = meet;
+		while (temp.next != meet) {
+			count++;
+			temp = temp.next;
 		}
+		// ek ko m distance chala do pehle
+		Node fast = head;
+		for (int i = 0; i < count; i++) {
+			fast = fast.next;
+		}
+		Node slow = head;
+		while (slow.next != fast.next) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		fast.next = null;
 	}
+	
+	// O(N)
+		public void floyedCycleRemoval() {
+			Node meet = hasCycle();
+			if (meet == null)
+				return;
+			Node slow = head;
+			Node fast = meet;
+			while (slow.next != fast.next) {
+				slow = slow.next;
+				fast = fast.next;
+			}
+			fast.next = null;
+		}
 
 	public static void main(String[] args) {
 		CycleDetectionAndRemovalLL cy = new CycleDetectionAndRemovalLL();
@@ -124,7 +144,7 @@ public class CycleDetectionAndRemovalLL {
 		cy.addLast(7);
 		cy.addLast(8);
 		cy.createCycle();
-		cy.cycleRemove1();
+		cy.floyedCycleRemoval();
 		cy.display();
 	}
 }
