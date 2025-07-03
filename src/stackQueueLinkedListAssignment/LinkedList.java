@@ -2,6 +2,8 @@ package stackQueueLinkedListAssignment;
 
 import java.util.Stack;
 
+import lec26.ReverseLinkedList.ListNode;
+
 public class LinkedList {
 
 	class Node {
@@ -58,7 +60,7 @@ public class LinkedList {
 	}
 
 	// O(n)
-	private Node getNode(int k) {
+	public Node getNode(int k) {
 		Node temp = head;
 		for (int i = 0; i < k; i++) {
 			temp = temp.next;
@@ -163,20 +165,20 @@ public class LinkedList {
 		return false;
 	}
 
-	public Node reverseList(Node head) {
-		return reverse(head, null);
-	}
-
-	public Node reverse(Node curr, Node prev) {
-
-		if (curr == null) {
-			return prev;
-		}
-
-		Node temp = reverse(curr.next, curr);
-		curr.next = prev;
-		return temp;
-	}
+//	public Node reverseList(Node head) {
+//		return reverse(head, null);
+//	}
+//
+//	public Node reverse(Node curr, Node prev) {
+//
+//		if (curr == null) {
+//			return prev;
+//		}
+//
+//		Node temp = reverse(curr.next, curr);
+//		curr.next = prev;
+//		return temp;
+//	}
 
 	// For returning List with odd values Nodes first and then even values Nodes
 	public Node oddEven() {
@@ -269,22 +271,38 @@ public class LinkedList {
 		prev.next = curr;
 	}
 
-	public void kAppend(int k) {
-		Stack<Node> st = new Stack<>();
-		Node dummy = head;
-		Node curr = head;
-		while (curr != null) {
-			st.push(curr);
-			curr = curr.next;
-		}
-		Node newHead = st.pop();
-		Node ahead = newHead;
-		while (k > 1) {
-			ahead.next = st.pop();
-			ahead = ahead.next;
+	public Node kAppend(int k) {
+		Node fast = head;
+		Node slow = head;
+		while (k > 0 && fast != null) {
+			fast = fast.next;
 			k--;
 		}
-		ahead.next = dummy;
-		head = newHead;
+		while (fast.next != null) {
+			fast = fast.next;
+			slow = slow.next;
+		}
+		Node dummy = slow.next;
+		slow.next = null;
+		Node temp = dummy;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = head;
+		head = dummy;
+		return head;
+	}
+
+	public Node reverseList(Node nn) {
+		Node curr = head;
+		Node prev = null;
+		while (curr != null) {
+			Node ahead = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = ahead;
+		}
+		head = prev;
+		return head;
 	}
 }

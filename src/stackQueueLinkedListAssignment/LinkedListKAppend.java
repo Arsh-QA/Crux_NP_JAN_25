@@ -1,19 +1,24 @@
 package stackQueueLinkedListAssignment;
 
+import java.util.Scanner;
+
 public class LinkedListKAppend {
 
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = n;
 		LinkedList ll = new LinkedList();
-		// 1 2 2 1 8 5 6
-		ll.addLast(1);
-		ll.addLast(2);
-		ll.addLast(2);
-		ll.addLast(1);
-		ll.addLast(8);
-		ll.addLast(5);
-		ll.addLast(6);
+		while (n > 0) {
+			ll.addLast(sc.nextInt());
+			n--;
+		}
+		int k = sc.nextInt();
+		if(k > m) {
+			k = k % m;
+		}
+		ll.kAppend(k);
 		ll.display();
-		ll.kAppend(3);
-		ll.display();
+		sc.close();
 	}
 }

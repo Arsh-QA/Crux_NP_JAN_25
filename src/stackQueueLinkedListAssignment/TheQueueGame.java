@@ -28,16 +28,17 @@ public class TheQueueGame {
 
 	public static boolean isValid(int[] arr) {
 		int push = 0;
-		int pop = 0;
 
 		for (int j : arr) {
+			if(push <0)
+				return false;
 			if (j == 1) {
 				push++;
-			} else {
-				pop++;
+			} else if (j == 0) {
+				push--;
 			}
 		}
-		if (push >= pop)
+		if (push >= 0)
 			return true;
 		else
 			return false;
