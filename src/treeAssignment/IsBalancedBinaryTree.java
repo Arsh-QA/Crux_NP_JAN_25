@@ -62,12 +62,12 @@ public class IsBalancedBinaryTree {
 				newPair.isBalanced = true;
 				return newPair;
 			}
-			int lPair = isBalanced(node.left).height;
-			int rPair = isBalanced(node.right).height;
+			int lHt = isBalanced(node.left).height;
+			int rHt = isBalanced(node.right).height;
 
 			BalancedPair pair = new BalancedPair();
-			pair.height = Math.max(lPair, rPair) + 1;
-			if (Math.abs(lPair - rPair) <= 1) {
+			pair.height = Math.max(lHt, rHt) + 1;
+			if (Math.abs(lHt - rHt) <= 1) {
 				pair.isBalanced = true;
 			}
 			return pair;

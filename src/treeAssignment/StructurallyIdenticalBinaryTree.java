@@ -59,7 +59,7 @@ public class StructurallyIdenticalBinaryTree {
 		private boolean structurallyIdentical(Node tnode, Node onode) {
 			if (tnode == null && onode == null)
 				return true;
-			if (tnode == null || onode == null)
+			else if (tnode == null || onode == null)
 				return false;
 
 			boolean lt = structurallyIdentical(tnode.left, onode.left);

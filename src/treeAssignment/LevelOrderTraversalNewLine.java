@@ -42,25 +42,25 @@ public class LevelOrderTraversalNewLine {
 
 // You need to implement this function to return a list of lists representing 
 	public static List<List<Integer>> levelOrderTraversal(TreeNode root) {
-		List<List<Integer>> ll = new ArrayList<List<Integer>>();
-		List<Integer> al = new ArrayList<Integer>();
-		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		List<List<Integer>> ll = new ArrayList<>();
+		if (root == null)
+			return ll;
+		Queue<TreeNode> q = new LinkedList<>();
 		q.add(root);
-		al.add(root.val);
-		ll.add(al);
 		while (!q.isEmpty()) {
-			TreeNode nn = q.poll();
-			List<Integer> al1 = new ArrayList<Integer>();
-			if (nn.left != null) {
-				al1.add(nn.left.val);
-				q.add(nn.left);
+			int size = q.size(); // number of nodes at current level
+			List<Integer> level = new ArrayList<>();
+
+			for (int i = 0; i < size; i++) {
+				TreeNode curr = q.poll();
+				level.add(curr.val);
+
+				if (curr.left != null)
+					q.add(curr.left);
+				if (curr.right != null)
+					q.add(curr.right);
 			}
-			if (nn.right != null) {
-				al1.add(nn.right.val);
-				q.add(nn.right);
-			}
-			if (!al1.isEmpty())
-				ll.add(al1);
+			ll.add(level);
 		}
 		return ll;
 	}
