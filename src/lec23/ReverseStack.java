@@ -35,5 +35,4 @@ public class ReverseStack {
 		addLast(st, item);
 		st.push(x);
 	}
-
 }
