@@ -8,12 +8,16 @@ import java.util.Scanner;
 
 public class RightSideView {
 
-	public static void main(String args[]) {
-		List<Integer> ll = new ArrayList<>();
-		Scanner sc = new Scanner(System.in);
-		ll.add(sc.nextInt());
-		System.out.println(ll);
-		sc.close();
+	public static void main(String[] args) {
+		RightSideView rsv = new RightSideView();
+		Node root2 = rsv.root;
+		rsv.display();
+		System.out.println(root2.left.val);
+		System.out.println(root2.right.val);
+		List<Integer> ll = rsv.rightSideView(root2);
+		for (int v : ll) {
+			System.out.print(v + " ");
+		}
 	}
 
 	class Node {
@@ -26,7 +30,7 @@ public class RightSideView {
 
 	Scanner sc = new Scanner(System.in);
 
-	public void createTreeUsingLevelOrder() {
+	public RightSideView() {
 		createTree();
 	}
 
@@ -40,7 +44,9 @@ public class RightSideView {
 		while (!q.isEmpty()) {
 			Node rn = q.poll();
 			int c1 = sc.nextInt();
+			System.out.println(c1);
 			int c2 = sc.nextInt();
+			System.out.println(c2);
 			if (c1 != -1) {
 				Node leftNode = new Node();
 				leftNode.val = c1;
@@ -54,6 +60,29 @@ public class RightSideView {
 				q.add(rightNode);
 			}
 		}
+	}
+
+	public void display() {
+		display(root);
+	}
+
+	private void display(Node nn) {
+		if (nn == null)
+			return;
+		String s = "<--" + nn.val + "-->";
+		if (nn.left != null) {
+			s = nn.left.val + s;
+		} else {
+			s = "." + s;
+		}
+		if (nn.right != null) {
+			s = s + nn.right.val;
+		} else {
+			s = s + ".";
+		}
+		System.out.println(s);
+		display(nn.left);
+		display(nn.right);
 	}
 
 	public List<Integer> rightSideView(Node root) {

@@ -12,11 +12,13 @@ public class MinStack {
 			arr[i] = sc.next();
 		}
 		List<Integer> ll = new ArrayList<Integer>();
-		ll.add(sc.nextInt());
+		ll.add(-2);
+		ll.add(0);
+		ll.add(-3);
 		MinStack ms = new MinStack();
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i].equals("push")) {
-				ms.push(ll.get(i));
+				ms.push(ll.get(ll.size() - 1));
 			} else if (arr[i].equals("pop")) {
 				ms.pop();
 			} else if (arr[i].equals("top")) {

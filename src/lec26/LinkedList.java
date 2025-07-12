@@ -1,5 +1,7 @@
 package lec26;
 
+import java.util.Stack;
+
 public class LinkedList {
 
 	class Node {
@@ -137,4 +139,6 @@ public class LinkedList {
 			return curr.val;
 		}
 	}
+	
+	
 }

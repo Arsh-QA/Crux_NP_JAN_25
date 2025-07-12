@@ -1,8 +1,6 @@
 package stackQueueLinkedListAssignment;
 
-import java.util.Stack;
-
-import lec26.ReverseLinkedList.ListNode;
+import java.util.*;
 
 public class LinkedList {
 
@@ -304,5 +302,32 @@ public class LinkedList {
 		}
 		head = prev;
 		return head;
+	}
+
+	public Node reverseKGroup(Node head, int k) {
+		Stack<Node> st = new Stack<>();
+		Node dummy = new Node();
+		Node temp = dummy;
+		Node A = head;
+		while (head != null) {
+			int t = k;
+			while (head != null && t > 0) {
+				st.push(head);
+				t--;
+				head = head.next;
+			}
+			if (t == 0) {
+				A = head;
+				while (!st.isEmpty()) {
+					Node rv = st.pop();
+					dummy.next = rv;
+					dummy = dummy.next;
+				}
+				dummy.next = null;
+			} else {
+				dummy.next = A;
+			}
+		}
+		return temp.next;
 	}
 }

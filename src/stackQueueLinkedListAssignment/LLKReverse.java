@@ -16,6 +16,7 @@ public class LLKReverse {
 		ll.display();
 		ll.reverseKList(3);
 		System.out.println();
+		ll.reverseKGroup(ll.getNode(0), 3);
 		ll.display();
 	}
 }
