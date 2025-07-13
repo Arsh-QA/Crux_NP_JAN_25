@@ -11,9 +11,6 @@ public class RightSideView {
 	public static void main(String[] args) {
 		RightSideView rsv = new RightSideView();
 		Node root2 = rsv.root;
-		rsv.display();
-		System.out.println(root2.left.val);
-		System.out.println(root2.right.val);
 		List<Integer> ll = rsv.rightSideView(root2);
 		for (int v : ll) {
 			System.out.print(v + " ");
@@ -44,9 +41,7 @@ public class RightSideView {
 		while (!q.isEmpty()) {
 			Node rn = q.poll();
 			int c1 = sc.nextInt();
-			System.out.println(c1);
 			int c2 = sc.nextInt();
-			System.out.println(c2);
 			if (c1 != -1) {
 				Node leftNode = new Node();
 				leftNode.val = c1;
@@ -55,7 +50,7 @@ public class RightSideView {
 			}
 			if (c2 != -1) {
 				Node rightNode = new Node();
-				rightNode.val = c1;
+				rightNode.val = c2;
 				rn.left = rightNode;
 				q.add(rightNode);
 			}

@@ -39,7 +39,7 @@ public class CreateTreeUsingLevelOrder {
 			}
 			if (c2 != -1) {
 				Node rightNode = new Node();
-				rightNode.val = c1;
+				rightNode.val = c2;
 				rn.left = rightNode;
 				q.add(rightNode);
 			}
