@@ -1,7 +1,5 @@
 package lec26;
 
-import java.util.Stack;
-
 public class LinkedList {
 
 	class Node {
