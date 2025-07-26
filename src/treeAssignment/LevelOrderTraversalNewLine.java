@@ -65,6 +65,29 @@ public class LevelOrderTraversalNewLine {
 		return ll;
 	}
 
+	// You need to implement this function to return a list of lists representing
+	public static void levelOrderTraversalMonuBhaiya(TreeNode root) {
+		Queue<TreeNode> queue = new LinkedList<>();
+		Queue<TreeNode> help = new LinkedList<>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			TreeNode rv = queue.remove();
+			System.out.println(root.val + " ");
+			if (rv.left != null) {
+				help.add(rv.left);
+			}
+			if (rv.right != null) {
+				help.add(rv.right);
+			}
+			if (queue.isEmpty()) {
+				queue = help;
+				System.out.println();
+				help = new LinkedList<>();
+			}
+		}
+		System.out.println();
+	}
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		List<Integer> values = new ArrayList<>();

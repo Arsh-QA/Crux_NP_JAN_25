@@ -18,15 +18,53 @@ public class BinarySearchTree {
 
 	private Node root;
 
-	public Node insertIntoBST(Node root, int val) {
-		if (root == null)
-			return new Node(val);
-		if (root.val < val) {
-			root.right = insertIntoBST(root.right, val);
-		} else {
-			root.left = insertIntoBST(root.left, val);
+	public void createTree(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			this.root = addBST(root, arr[i]);
 		}
-		return root;
+	}
+
+	private Node addBST(Node node, int val) {
+		if (node == null)
+			return new Node(val);
+		if (node.val < val) {
+			node.right = addBST(node.right, val);
+		} else {
+			node.left = addBST(node.left, val);
+		}
+		return node;
+	}
+
+	public void LCA(int p, int q) {
+
+		Node pn = new Node();
+		pn.val = p;
+
+		Node qn = new Node();
+		qn.val = q;
+
+		System.out.println(lowestCommonAncestor(root, pn, qn).val);
+
+//		return lowestCommonAncestor(root, pn, qn);
+	}
+
+	public Node lowestCommonAncestor(Node root, Node p, Node q) {
+		if (root == null)
+			return root;
+		if (root == p || root == q) {
+			return root;
+		}
+
+		Node left = lowestCommonAncestor(root.left, p, q);
+		Node right = lowestCommonAncestor(root.right, p, q);
+
+		if (left != null && right != null) {
+			return root;
+		} else if (left == null) {
+			return right;
+		} else {
+			return left;
+		}
 	}
 
 	public void display() {

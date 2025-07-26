@@ -9,7 +9,7 @@ public class LevelOrderZigzagBinaryTree {
 	public static void main(String[] args) {
 		LevelOrderZigzagBinaryTree m = new LevelOrderZigzagBinaryTree();
 		BinaryTree bt = m.new BinaryTree();
-		bt.levelOrderZZ();
+		bt.levelOrderZZMonuBhaiya();
 	}
 
 	private class BinaryTree {
@@ -71,6 +71,62 @@ public class LevelOrderZigzagBinaryTree {
 				} else if (r.right != null && level % 2 != 0) {
 					deque.addLast(r.right);
 				}
+			}
+			System.out.println();
+		}
+
+		public void levelOrderZZMonuBhaiya() {
+			Queue<Node> queue = new LinkedList<>();
+			Queue<Node> help = new LinkedList<>();
+			queue.add(root);
+			ArrayList<Integer> al = new ArrayList<>();
+			int level = 0;
+			while (!queue.isEmpty()) {
+				Node rv = queue.remove();
+				al.add(rv.data);
+				if (rv.left != null) {
+					help.add(rv.left);
+				}
+				if (rv.right != null) {
+					help.add(rv.right);
+				}
+				if (queue.isEmpty()) {
+					queue = help;
+					help = new LinkedList<>();
+					if (level % 2 == 0) {
+						for (int val : al) {
+							System.out.print(val + " ");
+						}
+					} else {
+						Collections.reverse(al);
+						for (int val : al) {
+							System.out.print(val + " ");
+						}
+					}
+					al = new ArrayList<>();
+					level++;
+				}
+			}
+			System.out.println();
+		}
+
+		public void levelOrder() {
+			ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+			ArrayList<Integer> al = new ArrayList<>();
+			Queue<Node> queue = new LinkedList<>();
+			queue.add(root);
+			al.add(root.data);
+			al = new ArrayList<>();
+			while (!queue.isEmpty()) {
+				Node rv = queue.remove();
+				if (rv.left != null) {
+					al.add(rv.left.data);
+				}
+				if (rv.right != null) {
+					al.add(rv.right.data);
+				}
+				result.add(al);
+				al = new ArrayList<>();
 			}
 			System.out.println();
 		}
