@@ -1,10 +1,10 @@
-package reviseLinkedList;
+package stackQueueLinkedListAssignment;
 
 import java.util.Scanner;
 
-public class LinkedLiist {
+public class TripletFromThreeLinkedLists {
 
-	class Node {
+	static class Node {
 		int data;
 		Node next;
 	}
@@ -146,98 +146,112 @@ public class LinkedLiist {
 		return prev;
 	}
 
-	// Add Two LinkedLists
-	Node start = null;
-
-	public Node add(Node head1, Node head2) throws Exception {
-		Node list1 = reverseList(head1);
-		Node list2 = reverseList(head2);
-		int sum = 0;
-		int carry = 0;
-		while (list1 != null && list2 != null) {
-			sum = (carry + list1.data + list2.data) % 10;
-			carry = (carry + list1.data + list2.data) / 10;
-			Node obj = new Node();
-			obj.data = sum;
-			if (start == null) {
-				start = obj;
-			} else {
-				Node last = getLastNode();
-				last.next = obj;
-			}
-			list1 = list1.next;
-			list2 = list2.next;
-		}
-		while (list2 != null) {
-			sum = (carry + list2.data) % 10;
-			carry = (carry + list2.data) / 10;
-			Node obj = new Node();
-			obj.data = sum;
-			if (start == null) {
-				start = obj;
-			} else {
-				Node last = getLastNode();
-				last.next = obj;
-			}
-			list2 = list2.next;
-		}
-		while (list1 != null) {
-			sum = (carry + list1.data) % 10;
-			carry = (carry + list1.data) / 10;
-			Node obj = new Node();
-			obj.data = sum;
-			if (start == null) {
-				start = obj;
-			} else {
-				Node last = getLastNode();
-				last.next = obj;
-			}
-			list1 = list1.next;
+	public Node sortList(Node head) {
+		if (head == null || head.next == null) {
+			return head;
 		}
 
-		if (carry > 0) {
-			Node obj = new Node();
-			obj.data = carry;
-			Node last = getLastNode();
-			last.next = obj;
-		}
-		Node headdd = reverseList(start);
-		return headdd;
+		Node mid = middleNode(head);
+		Node headB = mid.next;
+		mid.next = null;
+		Node A = sortList(head);
+		Node B = sortList(headB);
+		return mergeTwoLists(A, B);
 	}
 
-	private Node getLastNode() {
-		Node temp = start;
-		while (temp.next != null) {
-			temp = temp.next;
+	private Node mergeTwoLists(Node a, Node b) {
+		Node dummy = new Node();
+		Node temp = dummy;
+		while (a != null && b != null) {
+			if (b.data < a.data) {
+				dummy.next = b;
+				b = b.next;
+				dummy = dummy.next;
+			} else {
+				dummy.next = a;
+				a = a.next;
+				dummy = dummy.next;
+			}
 		}
-		return temp;
+		if (a == null) {
+			dummy.next = b;
+		}
+		if (b == null) {
+			dummy.next = a;
+		}
+		return temp.next;
 	}
 
-	public static void main(String[] args) throws Exception {
-		LinkedLiist ll1 = new LinkedLiist();
-		LinkedLiist ll2 = new LinkedLiist();
+	private Node middleNode(Node head2) {
+		Node slow = head2;
+		Node fast = head2;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		return slow;
+	}
 
+	public void findTriple(Node headA, Node headB, Node headC, int target) {
+		headB = sortList(headB);
+		headC = sortList(headC);
+
+		Node a = headA;
+
+		while (a != null) {
+			Node b = headB;
+			Node c = getTail(headC);
+			while (b != null && c != null) {
+				int sum = b.data + c.data;
+				if (a.data + sum == target) {
+					System.out.println(a.data + " " + b.data + " " + c.data);
+					return;
+				} else if (a.data + sum < target) {
+					b = b.next;
+				} else {
+					Node temp = headC;
+					while (temp.next != c && temp.next != null) {
+						temp = temp.next;
+					}
+					c = temp;
+				}
+			}
+			a = a.next;
+		}
+	}
+
+	Node getTail(Node head) {
+		while (head != null && head.next != null)
+			head = head.next;
+		return head;
+	}
+
+	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int l1 = sc.nextInt();
-		int l2 = sc.nextInt();
-		
-		for (int i = 0; i < l1; i++) {
-			ll1.addLast(sc.nextInt());
-		}
-		
-		for (int i = 0; i < l2; i++) {
-			ll2.addLast(sc.nextInt());
-		}
 
-		LinkedLiist result = new LinkedLiist();
-		Node resHead = result.add(ll1.head, ll2.head);
-		Node temp = resHead;
-		while (temp != null) {
-			System.out.print(temp.data + " ");
-			temp = temp.next;
-		}
-		System.out.println();
+		// Read sizes
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int k = sc.nextInt();
+
+		TripletFromThreeLinkedLists listA = new TripletFromThreeLinkedLists();
+		TripletFromThreeLinkedLists listB = new TripletFromThreeLinkedLists();
+		TripletFromThreeLinkedLists listC = new TripletFromThreeLinkedLists();
+
+		// Read three lists
+		for (int i = 0; i < n; i++)
+			listA.addLast(sc.nextInt());
+		for (int i = 0; i < m; i++)
+			listB.addLast(sc.nextInt());
+		for (int i = 0; i < k; i++)
+			listC.addLast(sc.nextInt());
+
+		int target = sc.nextInt();
+
+		TripletFromThreeLinkedLists helper = new TripletFromThreeLinkedLists();
+
+		helper.findTriple(listA.head, listB.head, listC.head, target);
+
 		sc.close();
 	}
-
 }

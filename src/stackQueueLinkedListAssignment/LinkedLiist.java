@@ -1,4 +1,4 @@
-package reviseLinkedList;
+package stackQueueLinkedListAssignment;
 
 import java.util.Scanner;
 
