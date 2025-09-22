@@ -1,75 +1,66 @@
 package treeAssignment;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-
+import java.util.*;
 
 public class BinaryTreesPrintAllLeafNodes {
 
 	public static void main(String[] args) {
-		BinaryTreesPrintAllLeafNodes bt = new BinaryTreesPrintAllLeafNodes();
-		bt.createTree();
-		bt.display();
+		BinaryTreesPrintAllLeafNodes ct = new BinaryTreesPrintAllLeafNodes();
+		ct.printAllLeafNodes();
 	}
-	
-	class Node{
+
+	class Node {
 		int val;
 		Node left;
 		Node right;
-	}
-	
-	private Node root;
-	
-	Scanner sc = new Scanner(System.in);
-	
-	public void display() {
-		display(root);
+
+		public Node(int val) {
+			this.val = val;
+		}
 	}
 
-	private void display(Node nn) {
-		if (nn == null)
-			return;
-		String s = "<--" + nn.val + "-->";
-		if (nn.left.val != -1) {
-			s = nn.left.val + s;
-		} else {
-			s = "." + s;
-		}
-		if (nn.right.val != -1) {
-			s = s + nn.right.val;
-		} else {
-			s = s + ".";
-		}
-		System.out.println(s);
-		display(nn.left);
-		display(nn.right);
+	private Node root;
+
+	public void printAllLeafNodes() {
+		printLeafNodes(root);
 	}
-	
-	
-	public void createTree() {
-		int item = sc.nextInt();
-		Node nn = new Node();
-		nn.val = item;
-		root = nn;
+
+	public void printLeafNodes(Node root) {
+		if (root.left == null && root.right == null) {
+			System.out.print(root.val + " ");
+		}
+		if (root.left == null || root.right == null)
+			return;
+		printLeafNodes(root.left);
+		printLeafNodes(root.right);
+	}
+
+	public BinaryTreesPrintAllLeafNodes() {
+		createTree();
+	}
+
+	private void createTree() {
+		Scanner sc = new Scanner(System.in);
+		int e = sc.nextInt();
+		Node node = new Node(e);
+		root = node;
 		Queue<Node> q = new LinkedList<>();
-		q.add(nn);
+		q.add(node);
 		while (!q.isEmpty()) {
-			Node rn = q.poll();
+			Node rv = q.poll();// remove first
 			int c1 = sc.nextInt();
 			int c2 = sc.nextInt();
 			if (c1 != -1) {
-				Node leftNode = new Node();
-				leftNode.val = c1;
-				rn.left = leftNode;
-				q.add(leftNode);
+				Node nn = new Node(c1);
+				rv.left = nn;
+				q.add(nn);
 			}
 			if (c2 != -1) {
-				Node rightNode = new Node();
-				rightNode.val = c2;
-				rn.left = rightNode;
-				q.add(rightNode);
+				Node nn = new Node(c2);
+				rv.right = nn;
+				q.add(nn);
 			}
 		}
+		sc.close();
 	}
 }

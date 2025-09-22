@@ -6,7 +6,7 @@ import java.util.List;
 public class LexicographicalNumbers {
 
 	public static void main(String[] args) {
-		int n = 1000;
+		int n = 100;
 		List<Integer> al = new ArrayList<Integer>();
 		lexicographical(0, n, al);
 		System.out.println(al);

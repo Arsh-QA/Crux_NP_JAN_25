@@ -35,37 +35,37 @@ public class BinarySearchTree {
 		return node;
 	}
 
-	public void LCA(int p, int q) {
-
-		Node pn = new Node();
-		pn.val = p;
-
-		Node qn = new Node();
-		qn.val = q;
-
-		System.out.println(lowestCommonAncestor(root, pn, qn).val);
-
-//		return lowestCommonAncestor(root, pn, qn);
-	}
-
-	public Node lowestCommonAncestor(Node root, Node p, Node q) {
-		if (root == null)
-			return root;
-		if (root == p || root == q) {
-			return root;
-		}
-
-		Node left = lowestCommonAncestor(root.left, p, q);
-		Node right = lowestCommonAncestor(root.right, p, q);
-
-		if (left != null && right != null) {
-			return root;
-		} else if (left == null) {
-			return right;
-		} else {
-			return left;
-		}
-	}
+//	public void LCA(int p, int q) {
+//
+//		Node pn = new Node();
+//		pn.val = p;
+//
+//		Node qn = new Node();
+//		qn.val = q;
+//
+//		System.out.println(lowestCommonAncestor(root, pn, qn).val);
+//
+////		return lowestCommonAncestor(root, pn, qn);
+//	}
+//
+//	public Node lowestCommonAncestor(Node root, Node p, Node q) {
+//		if (root == null)
+//			return root;
+//		if (root == p || root == q) {
+//			return root;
+//		}
+//
+//		Node left = lowestCommonAncestor(root.left, p, q);
+//		Node right = lowestCommonAncestor(root.right, p, q);
+//
+//		if (left != null && right != null) {
+//			return root;
+//		} else if (left == null) {
+//			return right;
+//		} else {
+//			return left;
+//		}
+//	}
 
 	public void display() {
 		display(root);

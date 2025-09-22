@@ -19,7 +19,6 @@ public class BinaryTree {
 	}
 
 	private Node createTree() {
-		// TODO Auto-generated method stub
 		int item = sc.nextInt();
 		Node nn = new Node();
 		nn.val = item;
