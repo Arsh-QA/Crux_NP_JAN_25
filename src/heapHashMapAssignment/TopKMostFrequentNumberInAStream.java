@@ -1,48 +1,50 @@
 package heapHashMapAssignment;
 
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class TopKMostFrequentNumberInAStream {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int t = sc.nextInt();
+
 		while (t-- > 0) {
 			int n = sc.nextInt();
 			int k = sc.nextInt();
 			int[] arr = new int[n];
+
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = sc.nextInt();
 			}
-			topKFrequent(arr, k);
-		}
-		sc.close();
-	}
 
-	private static void topKFrequent(int[] arr, int k) {
-//		HashMap<Integer, Integer> map = new HashMap<>();
-//		for (int i = 0; i < arr.length; i++) {
-//			if (map.containsKey(arr[i]))
-//				map.put(arr[i], map.get(arr[i]) + 1);
-//			else
-//				map.put(arr[i], 1);
-//		}
-		PriorityQueue<Integer> pq = new PriorityQueue<>();
-		pq.add(arr[0]);
-		System.out.print(pq.peek() + " ");
-		for (int i = 1; i < k; i++) {
-			if(pq.contains(arr[i])) {
-				System.out.print(arr[i] + " ");
-				continue;
+			Map<Integer, Integer> freq = new HashMap<>();
+
+			for (int i = 0; i < n; i++) {
+				int num = arr[i];
+				freq.put(num, freq.getOrDefault(num, 0) + 1);
+
+				// Define Priority Queue based on frequence and value
+				PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> {
+					if (freq.get(a).equals(freq.get(b)))
+						return a - b;
+					return freq.get(b) - freq.get(a);
+				});
+				pq.addAll(freq.keySet());
+
+				int count = 0;
+				List<Integer> top = new ArrayList<>();
+				while (!pq.isEmpty() && count < k) {
+					top.add(pq.poll());
+					count++;
+				}
+
+				// Print top k (or less if distinct < k)
+				for (int val : top) {
+					System.out.print(val + " ");
+				}
 			}
-			pq.add(arr[i]);
-		}
-		for(int i = 0; i <k; i++) {
 			System.out.println();
 		}
-
+		sc.close();
 	}
 }

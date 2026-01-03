@@ -1,37 +1,40 @@
-package lec40;
+package dpAssignment;
 
-import java.util.Arrays;
+import java.util.*;
 
-public class CoinChangeII {
+public class CoinChange {
 
 	public static void main(String[] args) {
-		int[] coin = { 1, 2, 5 };
-		int amount = 5;
-		System.out.println("Using Recursion");
-		System.out.println(coinChange(coin, amount, 0));
-
-		System.out.println("Using DP Top Down");
-		int[][] dp = new int[coin.length][amount + 1];
-		for (int[] a : dp) {
-			Arrays.fill(a, -1);
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int amount = sc.nextInt();
+		int[] coin = new int[n];
+		for (int i = 0; i < coin.length; i++) {
+			coin[i] = sc.nextInt();
 		}
-		System.out.println(coinChangeTD(coin, amount, 0, dp));
+//		System.out.println(coinChange(coin, amount, 0));
 
-		System.out.println("Using DP Bottom UP");
+//		int[][] dp = new int[coin.length][amount + 1];
+//		for (int[] a : dp) {
+//			Arrays.fill(a, -1);
+//		}
+//		System.out.println(coinChangeTD(coin, amount, 0, dp));
 		System.out.println(coinChangeBU(coin, amount));
+		sc.close();
 	}
 
-	public static int coinChangeBU(int[] coin, int amount) {
-		int[][] dp = new int[coin.length + 1][amount + 1];
+	public static long coinChangeBU(int[] coin, int amount) {
+		final int MOD = 1_000_000_007;
+		long[][] dp = new long[coin.length + 1][amount + 1];
 		for (int i = 0; i < dp.length; i++) {
 			dp[i][0] = 1;
 		}
 		for (int i = 1; i < dp.length; i++) {
 			for (int am = 1; am <= amount; am++) {
-				int inc = 0;
-				int exc = 0;
+				long inc = 0;
+				long exc = 0;
 				if (am >= coin[i - 1]) {
-					inc = dp[i][am - coin[i - 1]];
+					inc = (dp[i][am - coin[i - 1]]) % MOD;
 				}
 				exc = dp[i - 1][am];
 				dp[i][am] = inc + exc;
@@ -41,12 +44,10 @@ public class CoinChangeII {
 	}
 
 	public static int coinChangeTD(int[] coin, int amount, int i, int[][] dp) {
-		if (amount == 0) {
+		if (amount == 0)
 			return 1;
-		}
-		if (i == coin.length) {
+		if (i == coin.length)
 			return 0;
-		}
 		if (dp[i][amount] != -1) {
 			return dp[i][amount];
 		}
@@ -59,9 +60,6 @@ public class CoinChangeII {
 		return dp[i][amount] = inc + exc;
 	}
 
-	
-	
-	
 	public static int coinChange(int[] coin, int amount, int i) {
 		if (amount == 0) {
 			return 1;
@@ -78,11 +76,3 @@ public class CoinChangeII {
 		return inc + exc;
 	}
 }
-
-
-
-
-
-
-
-

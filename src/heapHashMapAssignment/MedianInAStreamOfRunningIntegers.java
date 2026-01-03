@@ -9,30 +9,42 @@ public class MedianInAStreamOfRunningIntegers {
 		int t = sc.nextInt();
 		while (t-- > 0) {
 			int n = sc.nextInt();
+			int[] arr = new int[n];
+			int i = 0;
+			while (i < n) {
+				arr[i] = sc.nextInt();
+				i++;
+			}
 			PriorityQueue<Integer> low = new PriorityQueue<>(Collections.reverseOrder());
 			PriorityQueue<Integer> high = new PriorityQueue<>();
-			int count = 1;
-			low.add(sc.nextInt());
-			System.out.println(low.peek());
-			count++;
-			while (n-- > 0) {
-				int next = sc.nextInt();
-				if (next > low.peek()) {
-					high.add(next);
+			int[] arr1 = new int[arr.length];
+			for (int j = 0; j < arr.length; j++) {
+				if (low.isEmpty() || arr[j] < low.peek()) {
+					low.add(arr[j]);
 				} else {
-					low.add(next);
+					high.add(arr[j]);
 				}
-				if (count % 2 == 0) {
-					int ans = (low.peek() + high.peek()) / 2;
-					System.out.println(ans);
+				if (low.size() + 1 == high.size()) {
+					arr1[j] = high.peek();
+				} else if (low.size() == high.size() + 1) {
+					arr1[j] = low.peek();
+				} else if (low.size() > high.size() + 1) {
+					high.add(low.poll());
+					arr1[j] = (low.peek() + high.peek()) / 2;
+				} else if (low.size() + 1 < high.size()) {
+					low.add(high.poll());
+					arr1[j] = (low.peek() + high.peek()) / 2;
 				} else {
-					if (low.size() > high.size())
-						System.out.println(low.peek());
-					else
-						System.out.println(high.peek());
+					arr1[j] = (low.peek() + high.peek()) / 2;
 				}
-				count++;
 			}
+			for (int k = 0; k < arr1.length; k++) {
+				if (k != arr1.length - 1)
+					System.out.print(arr1[k] + " ");
+				else
+					System.out.println(arr1[k]);
+			}
+			System.out.println();
 		}
 		sc.close();
 	}

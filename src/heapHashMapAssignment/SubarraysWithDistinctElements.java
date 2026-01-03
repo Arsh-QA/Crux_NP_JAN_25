@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SubarraysWithDistinctElements {
 
@@ -11,7 +12,35 @@ public class SubarraysWithDistinctElements {
 		int[] arr = { 1, 2, 3, 2, 3 };
 		printSubArray(arr);
 		System.out.println("*******************************");
-		distintElements(arr);
+//		distintElements(arr);
+//		System.out.println("*******************************");
+
+		System.out.println(sumOfLengths(arr));
+	}
+
+	public static int sumOfLengths(int[] arr) {
+		int n = arr.length;
+		final long MOD = 1_000_000_007L;
+		long ans = 0;
+
+		Set<Integer> set = new HashSet<>();
+		int left = 0;
+
+		for (int right = 0; right < n; right++) {
+			// If duplicate found, shrink the window from left
+			while (set.contains(arr[right])) {
+				set.remove(arr[left]);
+				left++;
+			}
+
+			set.add(arr[right]);
+
+			long w = right - left + 1;
+			long add = (w * (w + 1L) / 2L) % MOD;
+			ans = (ans + add) % MOD;
+		}
+
+		return (int) ans;
 	}
 
 	public static void distintElements(int[] arr) {

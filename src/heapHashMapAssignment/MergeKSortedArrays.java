@@ -9,23 +9,16 @@ public class MergeKSortedArrays {
 		Scanner sc = new Scanner(System.in);
 		int k = sc.nextInt();
 		int n = sc.nextInt();
-		int[][] arr = new int[k][n];
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
 		for (int i = 0; i < k; i++) {
 			for (int j = 0; j < n; j++) {
-				arr[i][j] = sc.nextInt();
+				pq.add(sc.nextInt());
 			}
 		}
 
-		for (int i = 0; i < k; i++) {
-			for (int j = 0; j < n; j++) {
-				System.out.print(arr[i][j] + " ");
-			}
-			System.out.println();
+		while (!pq.isEmpty()) {
+			System.out.print(pq.poll() + " ");
 		}
 		sc.close();
-	}
-
-	public static void mergeKSortedArrays(int[][] arr) {
-//		PriorityQueue<Integer> pq = 
 	}
 }
