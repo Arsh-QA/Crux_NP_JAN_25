@@ -40,3 +40,15 @@
 /DiameterOfBinaryTreeOptimized$Solution$DiaPair.class
 /CreateTreeUsingLevelOrder.class
 /CreateTreeUsingLevelOrder$TreeNode.class
+/Graph.class
+/GraphClient.class
+/Graphs.class
+/GraphsClient.class
+/IsValidTree.class
+/IsValidTree$Solution.class
+/IsGraphBipartite.class
+/IsGraphBipartite$Solution$BipartitePair.class
+/IsGraphBipartite$Solution.class
+/DijkstraAlgo.class
+/DijkstraAlgo$DijkstraPair.class
+/DijkstraAlgo$1.class
