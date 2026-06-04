@@ -52,3 +52,16 @@
 /DijkstraAlgo.class
 /DijkstraAlgo$DijkstraPair.class
 /DijkstraAlgo$1.class
+/PrimsAlgo.class
+/PrimsAlgo$PrimsPair.class
+/PrimsAlgo$1.class
+/BellManFord.class
+/BellManFord$EdgePair.class
+/FindIfPathExistsInGraph.class
+/FindIfPathExistsInGraph$Solution.class
+/KeysAndRooms.class
+/KeysAndRooms$Solution.class
+/NumberOfIslands.class
+/NumberOfIslands$Solution.class
+/RottingOranges.class
+/RottingOranges$Solution.class
