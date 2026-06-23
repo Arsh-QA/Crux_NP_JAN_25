@@ -75,10 +75,10 @@ public class BellManFord {
 		bf.addEdge(1, 2, 8);
 		bf.addEdge(1, 3, 4);
 		bf.addEdge(1, 4, 5);
-		bf.addEdge(3, 4, -3);
+		bf.addEdge(3, 4, 3);
 		bf.addEdge(4, 5, 4);
 		bf.addEdge(5, 2, 1);
-		bf.addEdge(2, 5, -2);
+		bf.addEdge(2, 5, 2);
 		bf.BellManFordAlgo(1);
 	}
 }

@@ -1,6 +1,6 @@
 package recursionRevision;
 
-public class CountSubSequence {
+public class CoinToss {
 	public static void main(String[] args) {
 		int noc = 4;
 		System.out.println(coinToss(noc, ""));
