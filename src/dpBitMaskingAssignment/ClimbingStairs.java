@@ -1,4 +1,4 @@
-package dpAssignment;
+package dpBitMaskingAssignment;
 
 public class ClimbingStairs {
 

@@ -1,4 +1,4 @@
-package dpAssignment;
+package dpBitMaskingAssignment;
 
 import java.util.Scanner;
 
